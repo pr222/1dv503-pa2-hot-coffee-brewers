@@ -2,8 +2,8 @@
 def createCoffeeShopTable():
     return "CREATE TABLE `coffee_shops` (" \
         " `id` VARCHAR(255) NOT NULL," \
-        " `name` VARCHAR(255)," \
-        " `country` VARCHAR(255)," \
+        " `name` VARCHAR(255) NOT NULL," \
+        " `country` VARCHAR(255) NOT NULL," \
     "  PRIMARY KEY (`id`)" \
         ") ENGINE=InnoDB"
 
@@ -11,9 +11,9 @@ def createCoffeeShopTable():
 def createReviewsTable():
     return "CREATE TABLE `reviews` (" \
         " `id` INT NOT NULL," \
-        " `date` VARCHAR(255)," \
-        " `rating` INT," \
-        " `coffeeID` INT," \
+        " `date` VARCHAR(255) NOT NULL," \
+        " `rating` INT NOT NULL," \
+        " `coffeeID` INT NOT NULL," \
         " `shopID` VARCHAR(255)," \
     "  PRIMARY KEY (`id`)" \
         ") ENGINE=InnoDB"
