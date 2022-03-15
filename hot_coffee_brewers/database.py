@@ -1,7 +1,7 @@
-import csv
 import mysql.connector
 from mysql.connector import errorcode
-from .tables import createCoffeeTable
+from .tables import *
+from .populate_db import *
 
 # Connection to database
 cnx = mysql.connector.connect(user='root', 
@@ -12,8 +12,10 @@ DB_NAME='coffee_reviews'
 
 cursor = cnx.cursor()
 
-
-def createTable(table: str):
+'''
+  Add new empty table to the database.
+'''
+def addTable(table: str):
   try:
     cursor.execute(table)
   except mysql.connector.Error as err:
@@ -49,14 +51,18 @@ def run_db():
       create_db(cursor, DB_NAME)
       print("Database {} was successfully created.".format(DB_NAME))
       cnx.database = DB_NAME
-      # Add tables.
-      coffeTable=createCoffeeTable()
-      createTable(coffeTable)
-      # create_species_table()
-      # Read files and add to database.
-      # parse_planets_to_db(PLANETS_CSV)
-      # parse_species_to_db(SPECIES_CSV)
-      # print("Database populated.")
+
+      coffe=createCoffeeTable()
+      addTable(coffe)
+      
+      shop=createCoffeeShopTable()
+      addTable(shop)
+      
+      reviews=createReviewsTable()
+      addTable(reviews)
+
+      populate_db(cursor, cnx)
+      print("Database tables populated.")
     else:
       print(err)
 

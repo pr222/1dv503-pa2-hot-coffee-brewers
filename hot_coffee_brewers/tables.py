@@ -1,13 +1,23 @@
 def createCoffeeTable():
-  return "CREATE TABLE `species` (" \
-                      " `name` VARCHAR(255) NOT NULL," \
-                      " `classification` VARCHAR(255)," \
-                      " `designation` VARCHAR(255)," \
-                      " `average_height` INT," \
-                      " `skin_colors` VARCHAR(255)," \
-                      " `hair_colors` VARCHAR(255)," \
-                      " `eye_colors` VARCHAR(255)," \
-                      " `average_lifespan` INT," \
-                      " `language` VARCHAR(255)," \
-                      " `homeworld` VARCHAR(255)" \
+  return "CREATE TABLE `coffeeShop` (" \
+                      " `id` VARCHAR(255) NOT NULL," \
+                      " `name` VARCHAR(255)," \
+                      " `country` VARCHAR(255)," \
+                      ") ENGINE=InnoDB" 
+                      
+def createCoffeeShopTable():
+  return "CREATE TABLE `review` (" \
+                      " `id` INT NOT NULL," \
+                      " `date` VARCHAR(255)," \
+                      " `rating` INT," \
+                      " `coffeeName` INT," \
+                      " `shopId` VARCHAR(255)," \
+                      ") ENGINE=InnoDB" 
+                      
+def createReviewsTable():
+  return "CREATE TABLE `coffee` (" \
+                      " `id` INT NOT NULL," \
+                      " `name` VARCHAR(255)," \
+                      " `roast` VARCHAR(255)," \
+                      " `origin` VARCHART(255)," \
                       ") ENGINE=InnoDB" 
