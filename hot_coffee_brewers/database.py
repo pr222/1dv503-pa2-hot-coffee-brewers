@@ -70,5 +70,6 @@ def run_db():
   Close database connections.
 '''
 def close_connections():
+  # cursor.execute("drop database coffee_reviews")
   cursor.close()
   cnx.close()
