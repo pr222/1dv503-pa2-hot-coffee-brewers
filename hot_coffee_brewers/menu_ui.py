@@ -1,11 +1,11 @@
 
 # List of options for the user
 menu_options = {
-  1: 'List all planets',
-  2: 'Search for planet details',
-  3: 'Search for species with height higher than given number',
-  4: 'What is the most likely desired climate of the given species?',
-  5: 'What is the average lifespan per species classification?',
+  1: 'List number of reviews for all Coffee shop',
+  2: 'List most liked coffee for all Coffee shop',
+  3: 'List the ratings for all coffee to a specific Coffee shop',
+  4: 'List most liked coffee for all countries',
+  5: 'List the most common roast for all country',
   6: 'Exit',
 }
 
@@ -16,7 +16,7 @@ def print_menu():
       print(key, '--', menu_options[key])
 
       
-      # Calls method from users input option
+# Calls method from users input option
 if __name__ == '__main__':
   while(True):
       print_menu()
