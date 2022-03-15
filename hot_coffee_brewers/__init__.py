@@ -1,5 +1,5 @@
 from .wild_coffee import WildCoffee
 
-print("Hot Coffee initialized and running only once!")
+print("Im feeling hot hot hot")
 
 WildCoffee.appear()
