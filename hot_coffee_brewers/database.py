@@ -1,0 +1,68 @@
+import csv
+import mysql.connector
+from mysql.connector import errorcode
+from .tables import createCoffeeTable
+
+# Connection to database
+cnx = mysql.connector.connect(user='root', 
+                              password='root',
+                              unix_socket='/Applications/MAMP/tmp/mysql/mysql.sock')
+
+DB_NAME='coffee_reviews'
+
+cursor = cnx.cursor()
+
+
+def createTable(table: str):
+  try:
+    cursor.execute(table)
+  except mysql.connector.Error as err:
+    if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+      print("Table already exists.")
+    else:
+      print("ERROR: ", err.msg)
+  else:
+    print("Table OK.")
+
+
+'''
+  Create a new database
+'''
+def create_db(cursor, DB_NAME):
+  try: 
+    cursor.execute("CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
+  except mysql.connector.Error as err:
+    print("Could not create the database {}".format(err))
+    exit(1)
+    
+
+'''
+  Run database.
+'''
+def run_db():
+  try:
+    cursor.execute("USE {};".format(DB_NAME))
+  except mysql.connector.Error as err:
+    print("The {} database doesn't exist.".format(DB_NAME))
+    if err.errno == errorcode.ER_BAD_DB_ERROR:
+      print("Create database...")
+      create_db(cursor, DB_NAME)
+      print("Database {} was successfully created.".format(DB_NAME))
+      cnx.database = DB_NAME
+      # Add tables.
+      coffeTable=createCoffeeTable()
+      createTable(coffeTable)
+      # create_species_table()
+      # Read files and add to database.
+      # parse_planets_to_db(PLANETS_CSV)
+      # parse_species_to_db(SPECIES_CSV)
+      # print("Database populated.")
+    else:
+      print(err)
+
+'''
+  Close database connections.
+'''
+def close_connections():
+  cursor.close()
+  cnx.close()

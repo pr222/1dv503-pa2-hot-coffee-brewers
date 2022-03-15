@@ -1,4 +1,6 @@
 
 class WildCoffee:
   def appear():
-    print("A wild coffee appears!")
+    print("A wild coffeeeeeee appears!")
+    
+
