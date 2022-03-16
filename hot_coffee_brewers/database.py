@@ -45,6 +45,7 @@ def create_db(cursor, DB_NAME):
 def run_db():
   try:
     cursor.execute("USE {};".format(DB_NAME))
+    cursor.execute(createReviewTimesView())
   except mysql.connector.Error as err:
     print("The {} database doesn't exist.".format(DB_NAME))
     if err.errno == errorcode.ER_BAD_DB_ERROR:
@@ -62,6 +63,8 @@ def run_db():
       reviews=createReviewsTable()
       addTable(reviews)
 
+      cursor.execute(createReviewTimesView())
+
       populate_db(cursor, cnx)
       print("Database tables populated.")
     else:
@@ -77,36 +80,19 @@ def close_connections():
 
 
 '''
-
+  QUERIES
 '''
 def reviews_all_shops():
   query_all_shop_reviews(cursor, cnx)
 
-
-'''
-
-'''
 def most_liked_coffee_all_shops():
   query_most_liked_coffee_all_shops(cursor, cnx)
-    
+  
+def reviews_coffee_specific_shop(input):
+  query_reviews_coffee_specific_shop(input, cursor, cnx)
 
+def most_rated_coffee():
+  query_most_rated_coffee(cursor, cnx)
 
-'''
-
-'''
-def reviews_coffee_specific_shop():
-    return
-
-
-'''
-
-'''
-def most_liked_coffee_all_countries():
-  return
-
-
-'''
-
-'''
-def most_common_roast_all_country():
-  return
+def least_rated_coffee():
+  query_least_rated_coffee(cursor, cnx)

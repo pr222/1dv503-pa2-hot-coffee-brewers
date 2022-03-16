@@ -27,3 +27,11 @@ def createCoffeeTable():
         " `origin` VARCHAR(255) NOT NULL," \
     "  PRIMARY KEY (`id`)" \
         ") ENGINE=InnoDB"
+
+def createReviewTimesView():
+    return "CREATE OR REPLACE VIEW reviewtimes AS " \
+        "SELECT coffee.name, coffee_shops.country, COUNT(reviews.rating) as ratings " \
+        "FROM reviews " \
+        "JOIN coffee_shops ON reviews.shopID = coffee_shops.id " \
+        "JOIN coffee ON reviews.coffeeID = coffee.id " \
+        "GROUP BY coffee_shops.country, coffee.name;" 

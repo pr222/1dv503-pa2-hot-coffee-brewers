@@ -1,8 +1,8 @@
 from .database import reviews_all_shops
 from .database import most_liked_coffee_all_shops
 from .database import reviews_coffee_specific_shop
-from .database import most_liked_coffee_all_countries
-from .database import most_common_roast_all_country
+from .database import most_rated_coffee
+from .database import least_rated_coffee
 
 # List of options for the user
 menu_options = {
@@ -16,7 +16,6 @@ menu_options = {
 
 # Prints the user menu options
 def print_menu():
-
   # Menu code inspired from https://computinglearner.com/how-to-create-a-menu-for-a-python-console-application/
   for key in menu_options.keys():
       print(key, '--', menu_options[key])
@@ -36,11 +35,12 @@ if __name__ == '__main__':
       elif option == 2:
           most_liked_coffee_all_shops()
       elif option == 3:
-          reviews_coffee_specific_shop()
+          inputShop = input('Enter the name of the CoffeShop: ')
+          reviews_coffee_specific_shop(inputShop)
       elif option == 4:
-          most_liked_coffee_all_countries()
+          most_rated_coffee()
       elif option == 5:
-          most_common_roast_all_country()
+          least_rated_coffee()
       elif option == 6:
           print('Exit application')
           exit()
