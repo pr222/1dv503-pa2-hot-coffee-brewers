@@ -17,35 +17,37 @@ menu_options = {
 # Prints the user menu options
 def print_menu():
   # Menu code inspired from https://computinglearner.com/how-to-create-a-menu-for-a-python-console-application/
-  for key in menu_options.keys():
+    print("--MENU--")
+    for key in menu_options.keys():
       print(key, '--', menu_options[key])
 
-      
-# Calls method from users input option
-if __name__ == '__main__':
-  while(True):
-      print_menu()
-      option = ''
-      try:
-          option = int(input('Enter your choice: '))
-      except:
-          print('Wrong input. Please enter a number ...')
-      if option == 1:
-          reviews_all_shops()
-      elif option == 2:
-          most_liked_coffee_all_shops()
-      elif option == 3:
-          inputShop = input('Enter the name of the CoffeShop: ')
-          reviews_coffee_specific_shop(inputShop)
-      elif option == 4:
-          most_rated_coffee()
-      elif option == 5:
-          least_rated_coffee()
-      elif option == 6:
-          print('Exit application')
-          exit()
-      else:
-          print('Invalid option. Please enter a number between 1 and 6.')
+    while(True):
+        option = ''
+        try:
+            option = int(input('Enter your choice: '))
+        except:
+            print('Wrong input. Please enter a number ...')
+        if option == 1:
+            reviews_all_shops()
+            print_menu()
+        elif option == 2:
+            most_liked_coffee_all_shops()
+            print_menu()
+        elif option == 3:
+            inputShop = input('Enter the name of the CoffeShop: ')
+            reviews_coffee_specific_shop(inputShop)
+            print_menu()
+        elif option == 4:
+            most_rated_coffee()
+            print_menu()
+        elif option == 5:
+            least_rated_coffee()
+            print_menu()
+        elif option == 6:
+            print('Exit application')
+            exit()
+        else:
+            print('Invalid option. Please enter a number between 1 and 6.')
 
 
 
