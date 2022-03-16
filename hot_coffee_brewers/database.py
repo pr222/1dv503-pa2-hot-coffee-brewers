@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 from .tables import *
 from .populate_db import *
+from .queries import *
 
 # Connection to database
 cnx = mysql.connector.connect(user='root', 
@@ -73,3 +74,39 @@ def close_connections():
   # cursor.execute("drop database coffee_reviews")
   cursor.close()
   cnx.close()
+
+
+'''
+
+'''
+def reviews_all_shops():
+  query_all_shop_reviews(cursor, cnx)
+
+
+'''
+
+'''
+def most_liked_coffee_all_shops():
+  query_most_liked_coffee_all_shops(cursor, cnx)
+    
+
+
+'''
+
+'''
+def reviews_coffee_specific_shop():
+    return
+
+
+'''
+
+'''
+def most_liked_coffee_all_countries():
+  return
+
+
+'''
+
+'''
+def most_common_roast_all_country():
+  return
